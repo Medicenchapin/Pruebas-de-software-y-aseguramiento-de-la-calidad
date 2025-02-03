@@ -7,31 +7,16 @@ from typing import List, Tuple
 def clean_number(line: str) -> str:
     """
     Cleans a line by replacing non-numeric characters with spaces.
-    - Replaces letters with spaces
-    - Converts `,`, `:`, `;` into `.`
-    - Keeps negative numbers and decimals valid
-
-    Args:
-        line (str): A single line from the file.
-
-    Returns:
-        str: A cleaned numeric string.
     """
-    line = re.sub(r'[a-zA-Z]', ' ', line)  # Replace letters with spaces
-    line = re.sub(r'[,;:]', '.', line)  # Convert punctuation to decimal points
-    line = re.sub(r'[^0-9.\-]', '', line).strip()  # Keep only valid numbers
+    line = re.sub(r'[a-zA-Z]', ' ', line)
+    line = re.sub(r'[,;:]', '.', line)
+    line = re.sub(r'[^0-9.\-]', '', line).strip()
     return line
 
 
 def decimal_to_binary(n: int) -> str:
     """
     Converts a decimal number to binary using basic division algorithm.
-
-    Args:
-        n (int): The decimal number.
-
-    Returns:
-        str: Binary representation.
     """
     if n == 0:
         return "0"
@@ -50,12 +35,6 @@ def decimal_to_binary(n: int) -> str:
 def decimal_to_hexadecimal(n: int) -> str:
     """
     Converts a decimal number to hexadecimal using basic division algorithm.
-
-    Args:
-        n (int): The decimal number.
-
-    Returns:
-        str: Hexadecimal representation.
     """
     if n == 0:
         return "0"
@@ -75,13 +54,6 @@ def decimal_to_hexadecimal(n: int) -> str:
 def process_numbers(filename: str) -> List[Tuple[int, int, str, str]]:
     """
     Reads a file, processes numbers, and converts them to binary and hexadecimal.
-
-    Args:
-        filename (str): The file containing numbers.
-
-    Returns:
-        List[Tuple[int, int, str, str]]: List of tuples containing 
-        (original decimal, least significant 8 bits, binary, hexadecimal).
     """
     results = []
 
@@ -94,7 +66,7 @@ def process_numbers(filename: str) -> List[Tuple[int, int, str, str]]:
                 if cleaned_line and re.fullmatch(r'-?\d+', cleaned_line):
                     try:
                         num = int(cleaned_line)
-                        bin_value = num % 256  # Extract the least significant 8 bits
+                        bin_value = num % 256
                         binary = decimal_to_binary(bin_value)
                         hexadecimal = decimal_to_hexadecimal(bin_value)
                         results.append((num, bin_value, binary, hexadecimal))
@@ -117,11 +89,6 @@ def process_numbers(filename: str) -> List[Tuple[int, int, str, str]]:
 def save_results(filename: str, results: List[Tuple[int, int, str, str]], elapsed_time: float) -> None:
     """
     Saves the converted numbers to a file.
-
-    Args:
-        filename (str): The output file path.
-        results (List[Tuple[int, int, str, str]]): List of converted values.
-        elapsed_time (float): Execution time in seconds.
     """
     with open(filename, 'w', encoding='utf-8') as file:
         file.write(f"{'ITEM':<5} {'TC1':<10} {'BIN':<10} {'Binary':<20} {'Hexadecimal':<10}\n")
@@ -136,7 +103,7 @@ def save_results(filename: str, results: List[Tuple[int, int, str, str]], elapse
 
 def main() -> None:
     """
-    Main function: Reads file, converts numbers, prints and saves results.
+    Main function
     """
     if len(sys.argv) != 2:
         print("Usage: python convertNumbers.py <filename>")
@@ -151,11 +118,11 @@ def main() -> None:
 
     # Print results to console
     print(f"{'ITEM':<5} {'TC1':<10} {'BIN':<10} {'Binary':<20} {'Hexadecimal':<10}")
-    print("=" * 60)
+    print("-" * 60)
     for idx, (num, bin_value, binary, hex_value) in enumerate(results, start=1):
         print(f"{idx:<5} {num:<10} {bin_value:<10} {binary:<20} {hex_value:<10}")
 
-    print("=" * 60)
+    print("-" * 60)
     print(f"Execution Time: {elapsed_time:.6f} seconds")
 
     # Save results to file

@@ -1,20 +1,10 @@
 import sys
 import time
-import re  # Import regex module for data cleaning
+import re 
 
 def read_numbers_from_file(filename):
     """
     Reads numbers from a file, removes non-numeric characters, and handles encoding issues.
-
-    Args:
-        filename (str): The path to the input file.
-
-    Returns:
-        list: A list of cleaned numerical values as floats.
-
-    Raises:
-        FileNotFoundError: If the file is not found.
-        SystemExit: If no valid numbers are found or another unexpected error occurs.
     """
     try:
         with open(filename, 'r', encoding='utf-8') as file:
@@ -26,11 +16,11 @@ def read_numbers_from_file(filename):
                 # Remove commas (used as thousand separators) to correctly parse as floats
                 clean_line = clean_line.replace(',', '')
 
-                if clean_line:  # Ensure it's not empty after cleaning
+                if clean_line:
                     try:
-                        numbers.append(float(clean_line))  # Convert the cleaned string to a float
+                        numbers.append(float(clean_line))
                     except ValueError:
-                        print(f"Skipping invalid data: '{line.strip()}'")  # Debugging message for invalid data
+                        print(f"Skipping invalid data: '{line.strip()}'")
 
         # If no valid numbers are found, exit with an error
         if not numbers:
@@ -39,22 +29,16 @@ def read_numbers_from_file(filename):
 
         return numbers
     except FileNotFoundError:
-        print(f"Error: File '{filename}' not found.")  # Handle missing file scenario
+        print(f"Error: File '{filename}' not found.")
         sys.exit(1)
     except Exception as e:
-        print(f"Unexpected error: {e}")  # Handle unexpected errors
+        print(f"Unexpected error: {e}")
         sys.exit(1)
 
 
 def compute_statistics(numbers):
     """
     Computes descriptive statistics: mean, median, mode, variance, and standard deviation.
-
-    Args:
-        numbers (list of float): A list of numerical values.
-
-    Returns:
-        tuple: (mean, median, mode, variance, standard deviation)
     """
     n = len(numbers)
 
@@ -71,7 +55,7 @@ def compute_statistics(numbers):
     freq = {}
     for num in numbers:
         freq[num] = freq.get(num, 0) + 1
-    mode = max(freq, key=freq.get)  # Get the number with the highest frequency
+    mode = max(freq, key=freq.get)
 
     # Variance: Measure of how spread out numbers are from the mean
     variance = sum((x - mean) ** 2 for x in numbers) / n
@@ -85,15 +69,6 @@ def compute_statistics(numbers):
 def save_results(filename, mean, median, mode, variance, std_dev, elapsed_time):
     """
     Saves computed statistics to a results file.
-
-    Args:
-        filename (str): The output file path.
-        mean (float): The computed mean.
-        median (float): The computed median.
-        mode (float): The computed mode.
-        variance (float): The computed variance.
-        std_dev (float): The computed standard deviation.
-        elapsed_time (float): The execution time of the calculations.
     """
     with open(filename, 'w', encoding='utf-8') as file:
         file.write(f"Mean: {mean:.2f}\n")
@@ -107,22 +82,19 @@ def save_results(filename, mean, median, mode, variance, std_dev, elapsed_time):
 def main():
     """
     Main execution function.
-    - Reads a file containing numbers.
-    - Computes descriptive statistics.
-    - Outputs results to console and a file.
     """
     # Ensure correct usage with exactly one argument (file name)
     if len(sys.argv) != 2:
         print("Usage: python computeStatistics.py <filename>")
         sys.exit(1)
 
-    filename = sys.argv[1]  # Get file name from command-line arguments
-    start_time = time.time()  # Start measuring execution time
+    filename = sys.argv[1]
+    start_time = time.time()
 
-    numbers = read_numbers_from_file(filename)  # Read and clean data
-    mean, median, mode, variance, std_dev = compute_statistics(numbers)  # Compute statistics
+    numbers = read_numbers_from_file(filename)
+    mean, median, mode, variance, std_dev = compute_statistics(numbers)
 
-    elapsed_time = time.time() - start_time  # Calculate execution time
+    elapsed_time = time.time() - start_time
 
     # Print results to console
     print(f"Mean: {mean:.2f}")
@@ -137,4 +109,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()  # Run the main function when script is executed
+    main() 
