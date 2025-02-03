@@ -1,5 +1,5 @@
 Word            Frequency 
-==============================
+------------------------------
 wilderness      5         
 managed         5         
 schools         5         
@@ -3750,6 +3750,6 @@ postposted      1
 realty          1         
 vaccine         1         
 relocation      1         
-==============================
+------------------------------
 Total Words: 5000
-Execution Time: 0.196392 seconds
+Execution Time: 0.194350 seconds

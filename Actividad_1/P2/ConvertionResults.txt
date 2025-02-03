@@ -39,4 +39,4 @@ ITEM  TC1        BIN        Binary               Hexadecimal
 37    0          0          0                    0         
 38    -6         250        11111010             FA        
 ============================================================
-Execution Time: 0.000431 seconds
+Execution Time: 0.000422 seconds

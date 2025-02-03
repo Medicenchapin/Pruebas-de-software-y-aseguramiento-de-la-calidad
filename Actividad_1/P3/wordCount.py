@@ -1,7 +1,6 @@
 import sys
 import time
 import re
-import os
 from typing import List, Tuple
 
 def clean_word(word: str) -> str:
@@ -10,7 +9,6 @@ def clean_word(word: str) -> str:
     """
     return re.sub(r'[^a-zA-Z]', '', word).lower()
 
-
 def process_words(filename: str) -> Tuple[List[Tuple[str, int]], int]:
     """
     Reads a file, processes words, and counts their frequency.
@@ -18,7 +16,6 @@ def process_words(filename: str) -> Tuple[List[Tuple[str, int]], int]:
     word_count = []
     words_list = []
     total_words = 0 
-
     try:
         with open(filename, 'r', encoding='utf-8') as file:
             for line in file:
@@ -30,7 +27,6 @@ def process_words(filename: str) -> Tuple[List[Tuple[str, int]], int]:
                     if clean: 
                         words_list.append(clean)
                         total_words += 1 
-
         # Manually count word occurrences
         for word in words_list:
             found = False
@@ -41,7 +37,6 @@ def process_words(filename: str) -> Tuple[List[Tuple[str, int]], int]:
                     break
             if not found:
                 word_count.append((word, 1))
-
     except FileNotFoundError:
         print(f"Error: File '{filename}' not found.")
         sys.exit(1)
@@ -50,24 +45,21 @@ def process_words(filename: str) -> Tuple[List[Tuple[str, int]], int]:
         print("Error: No valid words found in the file.")
         sys.exit(1)
 
-    return sorted(word_count, key=lambda x: x[1], reverse=True), total_words  # Sort by frequency (descending)
+    return sorted(word_count, key=lambda x: x[1], reverse=True), total_words
 
-
-def save_results(filename: str, results: List[Tuple[str, int]], total_words: int, elapsed_time: float) -> None:
+def save_results(filename: str, results: List[Tuple[str, int]], 
+                 total_words: int, elapsed_time: float) -> None:
     """
     Saves the word count results to a file.
     """
     with open(filename, 'w', encoding='utf-8') as file:
         file.write(f"{'Word':<15} {'Frequency':<10}\n")
         file.write("-" * 30 + "\n")
-
         for word, count in results:
             file.write(f"{word:<15} {count:<10}\n")
-
         file.write("-" * 30 + "\n")
-        file.write(f"Total Words: {total_words}\n")  # ✅ Added total word count
+        file.write(f"Total Words: {total_words}\n")
         file.write(f"Execution Time: {elapsed_time:.6f} seconds\n")
-
 
 def main() -> None:
     """
@@ -88,12 +80,10 @@ def main() -> None:
     print(f"{'Word':<15} {'Frequency':<10}")
     for word, count in results:
         print(f"{word:<15} {count:<10}")
-    print(f"Total Words: {total_words}")  # ✅ Print total word count
+    print(f"Total Words: {total_words}")
     print(f"Execution Time: {elapsed_time:.6f} seconds")
-
     # Save results to file
     save_results("WordCountResults.txt", results, total_words, elapsed_time)
-
 
 if __name__ == "__main__":
     main()

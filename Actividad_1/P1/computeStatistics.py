@@ -38,9 +38,9 @@ def read_numbers_from_file(filename):
 
 def compute_statistics(numbers):
     """
-    Computes descriptive statistics: mean, median, mode, variance, and standard deviation.
+    Computes descriptive statistics: count, mean, median, mode, variance, and standard deviation.
     """
-    n = len(numbers)
+    n = len(numbers)  # ✅ Count total numbers
 
     # Mean: Sum all numbers and divide by count
     mean = sum(numbers) / n
@@ -63,14 +63,15 @@ def compute_statistics(numbers):
     # Standard Deviation: Square root of variance
     std_dev = variance ** 0.5
 
-    return mean, median, mode, variance, std_dev
+    return n, mean, median, mode, variance, std_dev  # ✅ Returning count
 
 
-def save_results(filename, mean, median, mode, variance, std_dev, elapsed_time):
+def save_results(filename, count, mean, median, mode, variance, std_dev, elapsed_time):
     """
     Saves computed statistics to a results file.
     """
     with open(filename, 'w', encoding='utf-8') as file:
+        file.write(f"Total Numbers: {count}\n")  # ✅ Writing total count
         file.write(f"Mean: {mean:.2f}\n")
         file.write(f"Median: {median:.2f}\n")
         file.write(f"Mode: {mode:.2f}\n")
@@ -92,11 +93,12 @@ def main():
     start_time = time.time()
 
     numbers = read_numbers_from_file(filename)
-    mean, median, mode, variance, std_dev = compute_statistics(numbers)
+    count, mean, median, mode, variance, std_dev = compute_statistics(numbers)  # ✅ Capturing count
 
     elapsed_time = time.time() - start_time
 
     # Print results to console
+    print(f"Total Numbers: {count}")  # ✅ Display total count
     print(f"Mean: {mean:.2f}")
     print(f"Median: {median:.2f}")
     print(f"Mode: {mode:.2f}")
@@ -105,8 +107,8 @@ def main():
     print(f"Execution Time: {elapsed_time:.6f} seconds")
 
     # Save results to file
-    save_results("StatisticsResults.txt", mean, median, mode, variance, std_dev, elapsed_time)
+    save_results("StatisticsResults.txt", count, mean, median, mode, variance, std_dev, elapsed_time)
 
 
 if __name__ == "__main__":
-    main() 
+    main()
