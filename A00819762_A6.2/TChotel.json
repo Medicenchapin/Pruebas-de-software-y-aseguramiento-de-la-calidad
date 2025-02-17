@@ -5,5 +5,12 @@
     "location": "Santo Domingo, RD",
     "total_rooms": 40,
     "reserved_rooms": 1
+  },
+  "H002": {
+    "hotel_id": "H002",
+    "name": "Copa Cabana",
+    "location": "Cancun",
+    "total_rooms": 3000,
+    "reserved_rooms": 1
   }
 }

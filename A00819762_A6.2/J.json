@@ -4,5 +4,11 @@
     "hotel_id": "H001",
     "customer_id": "C001",
     "date_str": "2025-03-03"
+  },
+  "R002": {
+    "reservation_id": "R002",
+    "hotel_id": "H002",
+    "customer_id": "C002",
+    "date_str": "2025-06-16"
   }
 }

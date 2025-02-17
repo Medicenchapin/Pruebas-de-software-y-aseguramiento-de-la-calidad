@@ -3,5 +3,10 @@
     "customer_id": "C001",
     "name": "Ignacio Aguilar",
     "email": "ignacioag.iid@gmail.com"
+  },
+  "C002": {
+    "customer_id": "C002",
+    "name": "Carlos Emilio",
+    "email": "c.aguilar@yahoo.com"
   }
 }
