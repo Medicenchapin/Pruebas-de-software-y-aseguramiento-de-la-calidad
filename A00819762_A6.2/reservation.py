@@ -81,7 +81,7 @@ class ReservationManager:
     @staticmethod
     def save_reservations(reservations):
         """
-        Guarda en TCreservation.json los datos de {reservation_id: Reservation}.
+        Guarda en TCreservation.json.
         """
         data = {}
         for r_id, reservation in reservations.items():
@@ -133,7 +133,7 @@ class ReservationManager:
     @staticmethod
     def cancel_reservation(reservation_id):
         """
-        Cancela la reserva si existe, liberando la habitación en el hotel asociado.
+        Cancela la reserva si existe.
         """
         reservations = ReservationManager.load_reservations()
         if reservation_id not in reservations:

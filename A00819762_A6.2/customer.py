@@ -1,8 +1,6 @@
 """
 customer.py
 
-Define la clase Customer y CustomerManager.
-Usa TCcustomer.json para almacenar la información de clientes.
 """
 
 import json

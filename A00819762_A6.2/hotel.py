@@ -1,8 +1,6 @@
 """
 hotel.py
 
-Define la clase Hotel y la clase HotelManager.
-Usa TChotel.json para almacenar la información de hoteles.
 """
 
 import json
