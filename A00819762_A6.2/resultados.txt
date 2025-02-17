@@ -1,0 +1,6 @@
+Información de la reserva:
+Reservation ID: R001
+Hotel ID: H001
+Customer ID: C001
+Fecha: 2025-03-03
+

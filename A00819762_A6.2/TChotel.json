@@ -1,0 +1,9 @@
+{
+  "H001": {
+    "hotel_id": "H001",
+    "name": "Hotel Brisas del Mar",
+    "location": "Santo Domingo, RD",
+    "total_rooms": 40,
+    "reserved_rooms": 1
+  }
+}
